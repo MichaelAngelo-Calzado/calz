@@ -1,5 +1,5 @@
 ---
-title: "RWorksheet_calzado#1.pdf"
+title: "RWorksheet_Calzado#1.pdf"
 author: "Michael Angelo S. Calzado"
 date: "2024-09-04"
 output: pdf_document
@@ -8,7 +8,6 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 Set up a vector named age, consisting of 34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 42, 53, 41, 51, 35, 24, 33, 41.
       
       a. How many data points?
@@ -197,9 +196,4 @@ print(paste("My name is", name, "and I am", age, "years old."))
 print(R.version.string)
 ```
 Thats all thank you
-
-
-
-
-
 
