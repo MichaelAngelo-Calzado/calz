@@ -52,7 +52,7 @@ sort(age)
 ```{r}    
 min_age <- min(age)
 max_age <- max(age)
-print(paste("Minimum value:", min_age))
+print(paste("Minimumm value:", min_age))
 print(paste("Maximum value:", max_age))
 ```
 6. Set up a vector named data, consisting of 2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5,
@@ -155,10 +155,10 @@ x <- {0 + x + 5 + }
 
     Describe the output.
 ```{r}
-x <- {0 + x + 5 + }
-
-```
+#x <- {0 + x + 5 + }
 "It doesn't work or this equation results in a syntax error because it is incomplete"
+```
+
 13. *Set up a vector named score, consisting of 72, 86, 92, 63, 88, 89, 91, 92, 75, 75 and 77. To access individual elements of an atomic vector, one generally uses the x[i] construction.
 
     Find x[2] and x[3]. Write the R code and its output.
@@ -193,13 +193,14 @@ print(a, na.print="-999")
 What is the output of the above code?
 
 ```{r}
+
 name = readline(prompt="Input your name: ")
 age = readline(prompt="Input your age: ")
 print(paste("My name is", name, "and I am", age, "years old."))
 print(R.version.string)
 ```
 
-
+Thats all thank you
 
 
 
