@@ -546,9 +546,11 @@ data &lt;- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rive
 data</code></pre>
 <pre><code>## [1]    141.0000  83357.0000    591.1844    425.0000 243908.4086    493.8708
 ## [7]    135.0000   3710.0000</code></pre>
-<p>The table below gives the 25 most powerful celebrities and their
+<ol start="8" style="list-style-type: decimal">
+<li>The table below gives the 25 most powerful celebrities and their
 annual pay as ranked by the editions of Forbes magazine and as listed on
-the Forbes.com website. Ranking, Power Celebrity Name, Pay</p>
+the Forbes.com website. Ranking, Power Celebrity Name, Pay</li>
+</ol>
 <p>Tom Cruise 67, 2. Rolling Stones 90, 3. Oprah Winfrey 225, 4. U2 110
 5 Tiger Woods 90, 6. Steven Spielberg 332, 7. Howard Stern 302, 8. 50
 Cent 41, 9. Cast of the Sopranos 52, 10. Dan Brown 88, 11. Bruce
@@ -627,13 +629,148 @@ print(power_ranking)</code></pre>
 ## 24      24          Celine Dion         40
 ## 25      25          Kobe Bryant         31</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
-<li><p>Create an excel file from the table above and save it as csv
+<li>Create an excel file from the table above and save it as csv
 file(PowerRanking). Import the csv file into the RStudio. What is the R
-script?</p></li>
-<li><p>Access the rows 10 to 20 and save it as Ranks.RData. Write the R
-script and its output.</p></li>
-<li><p>Describe its output.</p></li>
+script?</li>
 </ol>
+<pre class="r"><code>write.csv(power_ranking, &quot;PowerRanking.csv&quot;, row.names = FALSE)
+imported_ranking &lt;- read.csv(&quot;PowerRanking.csv&quot;)
+print(imported_ranking)</code></pre>
+<pre><code>##    ranking       celebrity_name annual_pay
+## 1        1           Tom Cruise         67
+## 2        2       Rolling Stones         90
+## 3        3        Oprah Winfrey        225
+## 4        4                   U2        110
+## 5        5          Tiger Woods         90
+## 6        6     Steven Spielberg        332
+## 7        7         Howard Stern        302
+## 8        8              50 Cent         41
+## 9        9 Cast of the Sopranos         52
+## 10      10            Dan Brown         88
+## 11      11    Bruce Springsteen         55
+## 12      12         Donald Trump         44
+## 13      13         Muhammad Ali         55
+## 14      14       Paul McCartney         40
+## 15      15         George Lucas        233
+## 16      16           Elton John         34
+## 17      17      David Letterman         40
+## 18      18       Phil Mickelson         47
+## 19      15          J.K Rowling         90
+## 20      20            Brad Pitt         25
+## 21      21        Peter Jackson         39
+## 22      22      Dr. Phil McGraw         45
+## 23      23             Jay Leno         32
+## 24      24          Celine Dion         40
+## 25      25          Kobe Bryant         31</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Access the rows 10 to 20 and save it as Ranks.RData. Write the R
+script and its output.</li>
+</ol>
+<pre class="r"><code>subset_ranking &lt;- power_ranking[10:20, ]
+save(subset_ranking, file = &quot;Ranks.RData&quot;)
+print(subset_ranking)</code></pre>
+<pre><code>##    ranking    celebrity_name annual_pay
+## 10      10         Dan Brown         88
+## 11      11 Bruce Springsteen         55
+## 12      12      Donald Trump         44
+## 13      13      Muhammad Ali         55
+## 14      14    Paul McCartney         40
+## 15      15      George Lucas        233
+## 16      16        Elton John         34
+## 17      17   David Letterman         40
+## 18      18    Phil Mickelson         47
+## 19      15       J.K Rowling         90
+## 20      20         Brad Pitt         25</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Describe its output.</li>
+</ol>
+<p>The output from the previous step (subset_ranking) will consist of
+the details for the celebrities ranked 10 to 20, showing their
+respective rankings, names, and annual pay. This provides a focused view
+of a portion of the dataset, highlighting notable figures like Dan
+Brown, Bruce Springsteen, and J.K. Rowling within that specific
+range.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Download the Hotels-Vienna <a href="https://tinyurl.com/Hotels-Vienna" class="uri">https://tinyurl.com/Hotels-Vienna</a></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Import the excel file into your RStudio. What is the R script?</li>
+</ol>
+<pre class="r"><code>library(openxlsx)
+hotels_vienna &lt;- read.xlsx(&quot;/cloud/project/hotels-vienna.xlsx&quot;)</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>How many dimensions does the dataset have? What is the R script?
+What is its output?</li>
+</ol>
+<pre class="r"><code>dim(hotels_vienna)</code></pre>
+<pre><code>## [1] 428  24</code></pre>
+<p>The output will be a vector with two elements, the number of rows and
+the number of columns, respectively.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Select columns country, neighbourhood, price, stars,
+accomodation_type, and ratings. Write the R script.</li>
+</ol>
+<pre class="r"><code>selected_data &lt;- hotels_vienna[, c(&quot;country&quot;, &quot;neighbourhood&quot;, &quot;price&quot;, &quot;stars&quot;, &quot;accommodation_type&quot;, &quot;rating&quot;)]</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Save the data as **new.RData to your RStudio. Write the R
+script.</li>
+</ol>
+<pre class="r"><code>save(selected_data, file = &quot;new.RData&quot;)</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Display the first six rows and last six rows of the new.RData. What
+is the R script?</li>
+</ol>
+<pre class="r"><code>load(&quot;new.RData&quot;)
+head(selected_data, 6)</code></pre>
+<pre><code>##   country neighbourhood price stars accommodation_type rating
+## 1 Austria   17. Hernals    81     4          Apartment    4.4
+## 2 Austria   17. Hernals    81     4              Hotel    3.9
+## 3 Austria    Alsergrund    85     4              Hotel    3.7
+## 4 Austria    Alsergrund    83     3              Hotel    4.0
+## 5 Austria    Alsergrund    82     4              Hotel    3.9
+## 6 Austria    Alsergrund   229     5          Apartment    4.8</code></pre>
+<pre class="r"><code>tail(selected_data, 6)</code></pre>
+<pre><code>##     country neighbourhood price stars accommodation_type rating
+## 423 Austria        Wieden    73   3.0              Hotel    3.4
+## 424 Austria        Wieden   109   3.0          Apartment    5.0
+## 425 Austria        Wieden   185   5.0              Hotel    4.3
+## 426 Austria        Wieden   100   4.0              Hotel    4.4
+## 427 Austria        Wieden    58   3.0              Hotel    3.2
+## 428 Austria        Wieden   110   3.5          Apartment    4.0</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>Create a list of ten (10) vegetables you ate during your lifetime.
+If none, just list down.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Write the R scripts and its output.</li>
+</ol>
+<pre class="r"><code>vegetables &lt;- c(&quot;Carrot&quot;, &quot;Broccoli&quot;, &quot;Spinach&quot;, &quot;Tomato&quot;, &quot;Cucumber&quot;, &quot;Bell Pepper&quot;, &quot;Lettuce&quot;, &quot;Onion&quot;, &quot;Garlic&quot;, &quot;Zucchini&quot;)
+vegetables</code></pre>
+<pre><code>##  [1] &quot;Carrot&quot;      &quot;Broccoli&quot;    &quot;Spinach&quot;     &quot;Tomato&quot;      &quot;Cucumber&quot;   
+##  [6] &quot;Bell Pepper&quot; &quot;Lettuce&quot;     &quot;Onion&quot;       &quot;Garlic&quot;      &quot;Zucchini&quot;</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Add 2 additional vegetables after the last vegetables in the list.
+What is the R script and its output?</li>
+</ol>
+<pre class="r"><code>vegetables &lt;- c(vegetables, &quot;Eggplant&quot;, &quot;Radish&quot;)
+vegetables</code></pre>
+<pre><code>##  [1] &quot;Carrot&quot;      &quot;Broccoli&quot;    &quot;Spinach&quot;     &quot;Tomato&quot;      &quot;Cucumber&quot;   
+##  [6] &quot;Bell Pepper&quot; &quot;Lettuce&quot;     &quot;Onion&quot;       &quot;Garlic&quot;      &quot;Zucchini&quot;   
+## [11] &quot;Eggplant&quot;    &quot;Radish&quot;</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Add 4 additional vegetables after index 5. How many datapoints does
+your vegetable list have? What is the R script and its output?</li>
+</ol>
+<pre class="r"><code>vegetables &lt;- append(vegetables, c(&quot;Asparagus&quot;, &quot;Kale&quot;, &quot;Celery&quot;, &quot;Beetroot&quot;), after = 5)
+length(vegetables)</code></pre>
+<pre><code>## [1] 16</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Remove the vegetables in index 5, 10, and 15. How many vegetables
+were left? Write the codes and its output.</li>
+</ol>
+<pre class="r"><code>vegetables &lt;- vegetables[-c(5, 10, 15)]
+length(vegetables)</code></pre>
+<pre><code>## [1] 13</code></pre>
 
 
 
