@@ -1,0 +1,147 @@
+---
+title: "RWorksheet_Calzado#3b.Rmd"
+author: "Michael Angelo S. Calzado"
+date: "2024-09-22"
+output:
+  pdf_document:
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1. Create a data frame using the table below.
+a.	Write the codes.
+```{r}
+data <- data.frame(
+  Respondents = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20),
+  Sex = c(2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2),
+  FathersOccupation = c(1, 3, 3, 3, 1, 2, 3, 1, 1, 1, 3, 2, 1, 3, 3, 1, 3, 1, 2, 1),
+  PersonsAtHome = c(5, 7, 3, 8, 5, 9, 6, 7, 8, 4, 7, 5, 4, 7, 8, 8, 3, 11, 7, 6),
+  SiblingsAtSchool = c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3, 2),
+  TypeofHouses = c(1, 2, 3, 1, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2, 3, 3, 3, 3, 3, 2)
+)
+da <- data
+colnames(da) <- c("Respondents", "Sex", "Fathers Occupation", "Persons At Home", "Siblings At School", "Type of Houses")
+da
+
+legend <- list(
+  Sex = c("Male" = 1, "Female" = 2),
+  FathersOccupation = c("Farmer" = 1, "Driver" = 2, "Others" = 3),
+  TypeofHouses = c("Wood" = 1, "Semi-concrete" = 2, "Concrete" = 3)
+)
+legend 
+```
+b.	Describe the data. Get the structure or the summary of the data
+```{r}
+str(data)
+
+summary(data)
+```
+Figure 1: R Chunk
+c.	Is the mean number of siblings attending is 5?
+```{r}
+meansiblings <- mean(data$SiblingsAtSchool)
+meansiblings
+```
+- The answer is NO!. It is 2.95.
+
+d.	Extract the 1st two rows and then all the columns using the subsetting functions.Write the codes and its output.
+```{r}
+first2rows <- subset(data, Respondents <= 2)
+first2rows
+```
+e.	Extract 3rd and 5th row with 2nd and 4th column. Write the codes and its result.
+```{r}
+extractedrows <- data[c(3, 5), c(2, 4)]
+extractedrows
+```
+f.	Select the variable types of houses then store the vector that results as types_houses.Write the codes.
+```{r}
+types_houses <- data$TypeofHouses
+types_houses
+```
+g.	Select only all Males respondent that their father occupation was farmer. Write the
+codes and its output.
+```{r}
+malesfarmers <- data[data$Sex == 1 & data$FathersOccupation == 1, ]
+malesfarmers
+```
+h.	Select only all females respondent that have greater than or equal to 5 number of
+siblings attending school. Write the codes and its outputs.
+```{r}
+femalessiblings <- data[data$Sex == 2 & data$SiblingsAtSchool >= 5, ]
+femalessiblings
+```
+2. Write a R program to create an empty data frame. Using the following codes:
+```{r}
+df = data.frame(
+Doubles=double(),
+Characters=character(),
+Logicals=logical(), 
+Factors=factor(), 
+stringsAsFactors=FALSE
+)
+print("Structure of the empty dataframe:") 
+print(str(df))
+
+```
+a. Describe the results.
+3. Create a .csv file of this. Save it as HouseholdData.csv
+
+a.	Import the csv file into the R environment. Write the codes.
+```{r}
+data1 = read.csv("/cloud/project/HouseholdData.csv")
+data1
+```
+b.	Convert the Sex into factor using factor() function and change it into integer.[Legend: Male = 1 and Female = 2]. Write the R codes and its output.
+```{r}
+data1$Sex <- factor(data1$Sex, levels = c("Male", "Female"), labels = c(1, 2))
+data1$Sex <- as.integer(data1$Sex)
+data1$Sex
+```
+c.	Convert the Type of Houses into factor and change it into integer. [Legend: Wood = 1; Congrete = 2; Semi-Congrete = 3]. Write the R codes and its output.
+```{r}
+data1$TypeofHouse <- factor(data1$TypeofHouse, 
+                               levels = c("Wood", "Congrete", "Semi-congrete"), 
+                               labels = c(1, 2, 3))
+data1$TypeofHouse <- as.integer(data1$TypeofHouse)
+data1$TypeofHouse
+```
+d.	On father’s occupation, factor it as Farmer = 1; Driver = 2; and Others = 3. What
+is the R code and its output?
+```{r}
+data1$FathersOccupation <- factor(data1$FathersOccupation, 
+                                   levels = c(1, 2, 3), 
+                                   labels = c("Farmer", "Driver", "Others"))
+data1$FathersOccupation
+```
+e.	Select only all females respondent that has a father whose occupation is driver. Write
+the codes and its output.
+```{r}
+femaledrivers <- data1[data1$Sex == 2 & data1$FathersOccupation == 2, ]
+femaledrivers
+```
+f.	Select the respondents that have greater than or equal to 5 number of siblings attending
+school. Write the codes and its output.
+```{r}
+siblings_filter <- data1[data1$SiblingsAtSchool >= 5, ]
+siblings_filter
+```
+4. Interpret the graph.
+```{r}
+#The sentiment analysis of tweets reveals some interesting trends over the specified dates in July 2020:
+
+#On July 14, there was a clear sense of negativity in the tweets, reflecting significant public concerns or dissatisfaction. The following day, July 15, saw a sharp increase in negative sentiment, suggesting that something troubling was capturing attention and escalating worries among users. Positive sentiments also rose, but they still lagged behind.
+
+#By July 17, while negative feelings were still prevalent, there was a slight uptick in positive responses, indicating that some people might have been finding reasons for optimism amidst the negativity. This trend continued on July 18, where negative sentiment remained steady, but positive sentiment gained ground, showing a possible shift in public mood.
+
+#However, on July 20, negative sentiment dipped, though it still outpaced positive tweets, suggesting lingering concerns. Then, on July 21, there was another spike in negative sentiment, indicating renewed distress over certain issues.
+
+#Overall, the data reflects a fluctuating emotional landscape, with negative sentiments often dominating, particularly during critical days. It shows how public opinion can shift in response to ongoing events and issues.
+
+
+
+```
+
+
+Sentiment Analysis
